@@ -156,6 +156,7 @@ img {
 
 label{
   fill:white;
+  font-size:1.5em;
 }
 
 label:hover {
@@ -328,6 +329,8 @@ label:hover {
 @media (max-width:700px) {
   #footer{
     flex-direction: row;
+    flex-wrap:wrap;
+    font-size:0.5em;
   }
 
   #footer-img{
@@ -350,11 +353,11 @@ label:hover {
   margin:0;
   color:#24485a;
   text-align:center;
-  font-size:1.2vw;
+  font-size:1em;
 }
 
 #design-creds{
   color:#24485a;
-  font-size:1vw;
+  font-size:1em;
   margin-top:4.5em;
 }
