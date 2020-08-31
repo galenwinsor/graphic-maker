@@ -175,6 +175,7 @@ label:hover {
 
 #help:hover{
   cursor:pointer;
+  fill:#24485a;
 }
 
 .close{
@@ -199,6 +200,12 @@ label:hover {
   opacity:0.98;
   color:white;
   font-size:1.3em;
+}
+
+@media (max-width:700px) {
+  #help-box{
+    font-size:1em;
+  }
 }
 
 #big-choose{
@@ -272,6 +279,7 @@ label:hover {
 #display-box li{
   display:block;
   margin:1.5em;
+  font-size:3em;
 }
 
 #display-box a{
@@ -334,7 +342,7 @@ label:hover {
 }
 
 #design-creds{
-  position:absolute;
-  bottom:1em;
-  right:2em;
+  color:#24485a;
+  font-size:1vw;
+  margin-top:4.5em;
 }
