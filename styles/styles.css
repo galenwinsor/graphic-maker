@@ -150,8 +150,15 @@ img {
 }
 
 #submit{
+  margin-left:0 auto;
+  background-color:#022639;
+  width:9vw;
+  height:6vh;
+  border-style:none;
+  color:white;
   display:none;
   margin:0 auto;
+  font-size:1.5em;
 }
 
 label{
@@ -196,15 +203,6 @@ label:hover {
     display:none;
   }
 } */
-
-#submit{
-  margin-left:0 auto;
-  background-color:#022639;
-  width:9vw;
-  height:6vh;
-  border-style:none;
-  color:white;
-}
 
 #submit:hover{
   cursor: pointer;
