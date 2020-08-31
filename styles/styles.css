@@ -1,6 +1,6 @@
+/* --------- global css --------- */
 html{
   font-size:100%;
-  max-width:1300px;
 }
 
 body{
@@ -12,6 +12,8 @@ body{
 img {
   max-width: 100%;
 }
+
+/* --------- container and generic classes --------- */
 
 .container{
   width:100vw;
@@ -37,6 +39,8 @@ img {
 .center-hl{
   justify-content: center;
 }
+
+/* --------- header --------- */
 
 #header{
   margin:0;
@@ -94,6 +98,8 @@ img {
   transition:0.2s;
 }
 
+/* --------- graphic preview box --------- */
+
 @media (max-height:600px){
   #avatar-box{
     height:600px !important;
@@ -106,15 +112,6 @@ img {
   height:90vh;
   background: url("../images/jaime-background.png");
   background-size:cover;
-}
-
-#display-frame{
-  display:none;
-}
-
-#display-frame  {
-   height:50%;
-   margin:0 auto;
 }
 
 #avatar-desc{
@@ -143,7 +140,7 @@ img {
   height:max-content;
 }
 
-.inputfile {
+#inputfile {
   width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -167,50 +164,12 @@ label:hover {
   fill:#022639;
 }
 
-#help{
-  position:absolute;
-  top:2em;
-  right:3em;
-}
-
-#help:hover{
-  cursor:pointer;
-  fill:#24485a;
-}
-
-.close{
-  position:absolute;
-  top:2em;
-  right:2em;
-}
-
-.close:hover{
-  cursor:pointer;
-  fill:black;
-}
-
-#help-box{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:2;
-  width:100vw;
-  height:100vh;
-  background-color: #c50f3c;
-  opacity:0.98;
-  color:white;
-  font-size:1.3em;
-}
-
-@media (max-width:700px) {
-  #help-box{
-    font-size:1em;
-  }
-}
+/* ignore */
 
 #big-choose{
   display:none;
 }
+
 /*
 @media (max-width:620px){
   #avatar-desc{
@@ -256,6 +215,51 @@ label:hover {
   margin:1.5em auto;
   filter:drop-shadow(8px 8px 8px black);
 }
+
+/* --------- help message --------- */
+
+#help{
+  position:absolute;
+  top:2em;
+  right:3em;
+}
+
+#help:hover{
+  cursor:pointer;
+  fill:#24485a;
+}
+
+.close{
+  position:absolute;
+  top:2em;
+  right:2em;
+}
+
+.close:hover{
+  cursor:pointer;
+  fill:black;
+}
+
+#help-box{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:2;
+  width:100vw;
+  height:100vh;
+  background-color: #c50f3c;
+  opacity:0.98;
+  color:white;
+  font-size:1.3em;
+}
+
+@media (max-width:700px) {
+  #help-box{
+    font-size:1em;
+  }
+}
+
+/* -------- display box ----------- */
 
 #display-box{
   position:fixed;
@@ -308,6 +312,8 @@ label:hover {
     margin-top:0.5em;
   }
 } */
+
+/* ---------- footer ---------- */
 
 #footer{
   background-color:#022639;
