@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Jaime Avatar</title>
+
+    <script type="text/javascript">
+      function findFile(input) {
+        if (input.files && input.files[0]) {
+          document.getElementById('file-label').innerHTML = input.files[0].name;
+          document.getElementById('submit').style.display = 'inline';
+        }
+      }
+
+      function showHide(element) {
+        var x = document.getElementById(element);
+        if (x.style.display === "none") {
+          x.style.display = "flex";
+        } else {
+          x.style.display = "none";
+        }
+      }
+
+      function hide(element) {
+        document.getElementById(element).style.display = "none";
+      }
+
+      function fetchImage(e) {
+        const myRequest = new Request('https://wlcs.wombat-labs.com/photoframer/upload', {
+          method: 'POST',
+          mode: 'cors',
+          body: new FormData(document.getElementById('avatar-form')),
+          redirect: 'follow'
+        });
+
+        const myImage = document.getElementById('avatar-generated');
+
+        document.getElementById('display-box').style.display = "flex";
+
+        fetch(myRequest)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.blob();
+          })
+          .then(myBlob => {
+            const url = URL.createObjectURL(myBlob);
+            myImage.src = url;
+            document.getElementById('download').href = url;
+          })
+          .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+          });
+
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="column center-hl center-vl" id="display-box" style="display:none">
+        <svg class="close" onclick="showHide('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        <h2 id="loading" style="font-weight:normal">Your graphic is loading...</h2>
+        <img id="avatar-generated" src="" style="width:50%" onload="hide('loading')">
+        <div class="flex center-hl center-vl">
+          <ul>
+            <li>
+              <a align="bottom" id="download" href="#" download="jaime-avatar.png">
+                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/intent/tweet">Tweet</a>
+            </li>
+            <li>
+              <a href="https://facebook.com">Share</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="center-hl center-vl" id="help-box" style="display:none">
+        <svg class="close" onclick="showHide('help-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        <div id="help-blurb">
+          <ul>
+            <li>Click "Choose a file" to upload your image.</li>
+            <li>Select an image in the window that appears.</li>
+            <li>Click the "Upload" button or the name of your file to upload a different image.</li>
+            <li>Wait for your Jaime graphic to load. <span style="color:#24478d; font-weight:bold">Download, share, and enjoy!</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="header" class="flex center-vl">
+        <a id="header-link" href="https://jaimeharrison.com" rel="noopener noreferrer" target="_blank">
+          <div id="header-img-box" class="flex center-vl center-hl">
+            <img id="header-img" src="images/lmenu.png" alt="">
+          </div>
+        </a>
+
+        <ul id="menu-list" class="flex center-hl">
+          <li>
+            <a href="https://go.jaimeharrison.com/page/s/volunteer-sign-up?source=MS_HP_FR_X_X_homepage-signup_X__F1_S1_C1__X" rel="noreferrer noopener" target="_blank">VOLUNTEER</a>
+          </li>
+          <li>
+            <a href="https://secure.actblue.com/donate/ms_harrison_fr_homepage_2019?refcode=MS_HP_FR_X_X_homepage_X__F1_S1_C1__X&recurring=auto&amount=25" rel="noreferrer noopener" target="_blank">DONATE</a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="avatar-box" class="flex center-hl center-vl">
+        <svg id="help" onclick="showHide('help-box')" width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+        </svg>
+
+        <div id="avatar-desc" class="flex column center-vl center-hl">
+          <form id="avatar-form" onsubmit="fetchImage(); return false" enctype="multipart/form-data">
+            <input type="hidden" name="frame" value="b6a7d84f84cba96d4e18469eb4aec9e8c43429b36d175312a5cf1bde3c532c8b" />
+            <input type="hidden" name="getURL">
+            <input class="form-control-file inputfile" type="file" id="myFile" name="photo" accept="image/*" onchange="findFile(this);">
+
+            <label for="myFile" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg><span id="choose"> Choose a file</span></label>
+
+            <span id="big-choose">Choose a file</span>
+            <input id='submit' type="submit" value="Upload" target="_blank">
+            <img id="avatar" src="images/AvatarTemplate.png" alt="">
+          </form>
+        </div>
+      </div>
+
+      <div id="footer" class="flex column center-hl center-vl">
+        <img id="footer-img" src="images/footer.png" alt="">
+
+        <div id="paid-box">
+          <p>PAID FOR BY JAIME HARRISON FOR U.S. SENATE</p>
+        </div>
+
+        <p id="design-creds">Web design by Galen Winsor. Graphic design by Luke Holey. Backend by Steve West.</p>
+      </div>
+
+    </div>
+  </body>
+</html>
