@@ -15,7 +15,7 @@ html{
 }
 
 body{
-  font-family:Poppins;
+  font-family:Poppins, Arial;
   margin:0;
   overflow-x: hidden;
 }
@@ -235,6 +235,12 @@ label:hover {
 #help:hover{
   cursor:pointer;
   fill:#24485a;
+}
+
+@media (max-width:700px) {
+  #help svg{
+    width:2em;
+  }
 }
 
 .close{
