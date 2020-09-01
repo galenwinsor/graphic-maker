@@ -7,90 +7,51 @@
     <meta name="HandheldFriendly" content="true">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Jaime Avatar</title>
+    <title>Become a #TeamJaime Hero</title> <!--JWCR:  How about a better name? -->
 
-    <script type="text/javascript">
-      // shows the upload button and name of the input file once the user uploads
-      // a file
-      function findFile(input) {
-        if (input.files && input.files[0]) {
-          document.getElementById('file-label').innerHTML = input.files[0].name;
-          document.getElementById('submit').style.display = 'inline';
-        }
-      }
-
-      // toggles visibility of an element
-      function showHide(element) {
-        var x = document.getElementById(element);
-        if (x.style.display === "none") {
-          x.style.display = "flex";
-        } else {
-          x.style.display = "none";
-        }
-      }
-
-      // hides an element
-      function hide(element) {
-        document.getElementById(element).style.display = "none";
-      }
-
-      // fetches an image from an api, creating a url object from that image blob
-      // and inserting it into a img element
-      function fetchImage(e) {
-        const myRequest = new Request('https://wlcs.wombat-labs.com/photoframer/upload', {
-          method: 'POST',
-          mode: 'cors',
-          body: new FormData(document.getElementById('avatar-form')),
-          redirect: 'follow'
-        });
-
-        const myImage = document.getElementById('avatar-generated');
-
-        document.getElementById('display-box').style.display = "flex";
-
-        fetch(myRequest)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            // document.getElementById('tweet').href = 'https://twitter.com/intent/tweet?url=' + response.url
-            return response.blob();
-          })
-          .then(myBlob => {
-            const url = URL.createObjectURL(myBlob);
-            myImage.src = url;
-            document.getElementById('download').href = url;
-          })
-          .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-          });
-
-        return false;
-      }
-    </script>
+    <script src="onteamjaime.js"></script>
   </head>
   <body>
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="fq8TAPlP"></script>
+
     <!-- a box for page contents -->
     <div class="container">
 
       <!-- a box for displaying the generated graphic -->
-      <div class="column center-hl center-vl" id="display-box" style="display:none">
+      <div class="column center-hl center-vl" id="display-box" style="z-index:-1">
         <!-- button to close display box -->
         <svg class="close" onclick="showHide('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
-        <!-- disappears once image has loaded -->
-        <h2 id="loading" style="font-weight:normal">Your graphic is loading...</h2>
+        <img id="loading" src="images/Loadingsome.gif" alt="" width="50%">
         <!-- the generated graphic -->
-        <img id="avatar-generated" src="" style="width:50%" onload="hide('loading')">
+        <img id="avatar-generated" style="width:50%" onload="hide('loading')">
         <!-- a box to center the display box elements -->
-        <div class="flex center-hl center-vl">
+        <div id="buttons" class="flex center-hl center-vl">
           <ul>
             <li>
               <!-- a download button -->
-              <a id="download" href="#" download="jaime-avatar.png">
-                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <a id="download" href="#" download="TeamJaimeHero.png">
+                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                   <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                 </svg>
@@ -98,10 +59,10 @@
             </li>
             <!-- TODO: figure out how to make these buttons share graphic directly -->
             <li>
-              <a id="tweet" href="https://twitter.com/intent/tweet" target="_blank">Tweet</a>
+              <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
             </li>
             <li>
-              <a href="https://facebook.com" target="_blank">Share</a>
+              <div id="fb" class="fb-share-button" data-href="https://google.com" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
             </li>
           </ul>
         </div>
@@ -145,9 +106,10 @@
       <!-- box for preview of graphic -->
       <div id="avatar-box" class="flex center-hl center-vl">
         <!-- button to open help message -->
-        <svg id="help" onclick="showHide('help-box')" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-question-circle" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <svg id="help" onclick="showHide('help-box')" fill="white" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+          <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+          <circle cx="8" cy="4.5" r="1"/>
         </svg>
 
         <!-- a box for holding the graphic and buttons -->
@@ -161,7 +123,7 @@
             <label for="inputfile" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg><span id="choose"> Choose a file</span></label>
 
             <span id="big-choose">Choose a file</span>
-            <input id='submit' type="submit" value="Upload" target="_blank">
+            <input id='submit' type="submit" value="Upload" target="_blank" onclick="show('display-box')">
             <img id="avatar" src="images/AvatarTemplate.png" alt="">
           </form>
         </div>
@@ -174,11 +136,7 @@
         <div id="paid-box">
           <p>PAID FOR BY JAIME HARRISON FOR U.S. SENATE</p>
         </div>
-
-        <!-- TODO: give steve credit? how? -->
-        <p id="design-creds">Web design by Galen Winsor. Graphic design by Luke Holey.</p>
       </div>
-
     </div>
   </body>
 </html>
