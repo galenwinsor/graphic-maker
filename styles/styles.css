@@ -1,10 +1,21 @@
 /* --------- global css --------- */
+@font-face{
+  font-family: Poppins;
+  src: url('../fonts/Poppins/Poppins-Regular.tff');
+}
+
+@font-face{
+  font-family:Poppins;
+  src: url('../fonts/Poppins/Poppins-Black.tff');
+  font-weight:bold;
+}
+
 html{
   font-size:100%;
 }
 
 body{
-  font-family:'Poppins';
+  font-family:Poppins;
   margin:0;
   overflow-x: hidden;
 }
