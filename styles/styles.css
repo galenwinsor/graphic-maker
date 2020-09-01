@@ -1,5 +1,6 @@
 /* --------- global css --------- */
-@font-face{
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+/* @font-face{
   font-family: Poppins;
   src: url('../fonts/Poppins/Poppins-Regular.tff');
 }
@@ -8,14 +9,14 @@
   font-family:Poppins;
   src: url('../fonts/Poppins/Poppins-Black.tff');
   font-weight:bold;
-}
+} */
 
 html{
   font-size:100%;
 }
 
 body{
-  font-family:Poppins, Arial;
+  font-family:'Poppins', Arial;
   margin:0;
   overflow-x: hidden;
 }
