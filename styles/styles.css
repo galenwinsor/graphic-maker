@@ -150,10 +150,8 @@ img {
 }
 
 #submit{
-  margin-left:0 auto;
+  padding:0.5em;
   background-color:#022639;
-  width:9vw;
-  height:6vh;
   border-style:none;
   color:white;
   display:none;
@@ -280,9 +278,16 @@ label:hover {
 }
 
 #display-box li{
-  display:block;
+  list-style: none;
+  height:min-content;
   margin:1em;
   font-size:2em;
+}
+
+#fb{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (max-width:700px) {

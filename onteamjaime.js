@@ -22,6 +22,10 @@ function hide(element) {
   document.getElementById(element).style.display = "none";
 }
 
+function show(e) {
+  document.getElementById(e).style.zIndex = "2";
+}
+
 // fetches an image from an api, creating a url object from that image blob
 // and inserting it into a img element
 function fetchImage(e) {
@@ -49,9 +53,9 @@ function fetchImage(e) {
       document.getElementById('download').href = url;
     })
     .catch(error => {
+      alert("Oops! There was an issue with your upload. Please try again.");
+      document.getElementById('display-box').style.zIndex = "-1";
       console.error('There has been a problem with your fetch operation:', error);
-      // JWCR: You should display on error to the user--even if it's a simple 'alert()'
-      // and close the display-box so they can try again!
     });
 
   return false;
