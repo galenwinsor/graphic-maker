@@ -23,6 +23,7 @@ function hide(element) {
 }
 
 function show(e) {
+  document.getElementById(e).style.opacity = "1";
   document.getElementById(e).style.zIndex = "2";
 }
 

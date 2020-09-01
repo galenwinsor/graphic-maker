@@ -37,7 +37,7 @@
     <div class="container">
 
       <!-- a box for displaying the generated graphic -->
-      <div class="column center-hl center-vl" id="display-box" style="z-index:-1">
+      <div class="column center-hl center-vl" id="display-box" style="opacity:0; z-index:-1">
         <!-- button to close display box -->
         <svg class="close" onclick="showHide('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -59,7 +59,7 @@
             </li>
             <!-- TODO: figure out how to make these buttons share graphic directly -->
             <li>
-              <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+              <a target="_blank" class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
             </li>
             <li>
               <div id="fb" class="fb-share-button" data-href="https://google.com" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
@@ -77,9 +77,9 @@
         <!-- the help message -->
         <div id="help-blurb">
           <ul>
-            <li>Click "Choose a file" to upload your image.</li>
+            <li>Click "Choose a file" to upload your image. (Try to select a square image, if possible)</li>
             <li>Select an image in the window that appears.</li>
-            <li>Click the "Upload" button or the name of your file to upload a different image.</li>
+            <li>Click either the "Upload" button to upload or the name of your file to upload a different image.</li>
             <li>Wait for your Jaime graphic to load. <span style="color:#24478d; font-weight:bold">Download, share, and enjoy!</span></li>
           </ul>
         </div>
