@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="true">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/styles.css">
-    <!--
+    <!-- JWCR:
     Is JQuery needed? I don't see it used and everything seems to work fine without it.
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
     -->
     <title>I'm on Team Jaime</title> <!-- How about a better name? -->
 
-    <!-- pull this into a separate js file -->
+    <!-- JWCR: pull this into a separate js file -->
     <script src="onteamjaime.js"></script>
   </head>
   <body>
@@ -29,7 +29,7 @@
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
         <!-- disappears once image has loaded -->
-        <h2 id="loading" style="font-weight:normal">Your graphic is loading...</h2> <!-- use some animation, even animated gif, to show life while waiting -->
+        <h2 id="loading" style="font-weight:normal">Your graphic is loading...</h2> <!-- JWCR: use some animation, even animated gif, to show life while waiting -->
         <!-- the generated graphic -->
         <img id="avatar-generated" src="" style="width:50%" onload="hide('loading')">
         <!-- a box to center the display box elements -->
@@ -49,8 +49,8 @@
               <a id="tweet" href="https://twitter.com/intent/tweet" target="_blank">Tweet</a>
             </li>
             <li>
-              <a href="https://facebook.com" target="_blank">Share on Facebook</a> <!--use FB icon or say 'Facebook',share is too general-->
-              <!--Add instagram? It's an image, Instagram is the place for those! -->
+              <a href="https://facebook.com" target="_blank">Share on Facebook</a> <!-- JWCR: use FB icon or say 'Facebook',share is too general-->
+              <!-- JWCR: Add instagram? It's an image, Instagram is the place for those! -->
             </li>
           </ul>
         </div>
@@ -124,10 +124,9 @@
           <p>PAID FOR BY JAIME HARRISON FOR U.S. SENATE</p>
         </div>
 
-        <!-- TODO: give steve credit? how? --> <!-- maybe no credits? Keep the focus on Jaime and avoid getting trolled?-->
+        <!-- TODO: give steve credit? how? --> <!-- JWCR: maybe no credits? Keep the focus on Jaime and avoid getting trolled?-->
         <p id="design-creds">Web design by Galen Winsor. Graphic design by Luke Holey.</p>
       </div>
-
     </div>
   </body>
 </html>

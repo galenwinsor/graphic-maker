@@ -50,8 +50,8 @@ function fetchImage(e) {
     })
     .catch(error => {
       console.error('There has been a problem with your fetch operation:', error);
-      // You should display on error to the user--even if it's a simple 'alert()'
-      // and close the display-box
+      // JWCR: You should display on error to the user--even if it's a simple 'alert()'
+      // and close the display-box so they can try again!
     });
 
   return false;
