@@ -74,7 +74,7 @@ img {
 
 @media(max-width:700px) {
   #header-img{
-    width:30%;
+    width:55%;
     position:unset;
     margin:0 auto;
   }
