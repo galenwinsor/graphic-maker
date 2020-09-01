@@ -26,6 +26,10 @@ function show(e) {
   document.getElementById(e).style.zIndex = "2";
 }
 
+function expand(e) {
+  document.getElementById(e).style.height = "auto";
+}
+
 // fetches an image from an api, creating a url object from that image blob
 // and inserting it into a img element
 function fetchImage(e) {
