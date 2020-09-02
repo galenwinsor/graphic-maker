@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <title>Become a #TeamJaime Hero</title> <!--JWCR:  How about a better name? -->
 
-    <script src="onteamjaime.min.js"></script>
+    <script src="onteamjaime.js"></script>
   </head>
   <body>
 
@@ -26,6 +26,7 @@
         <svg class="close" onclick="showHide('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
+        <canvas id="canvas" width="1200px" height="675px" style="display:none"></canvas> 
         <img id="loading" src="images/Loadingsome.gif" alt="" width="50%">
         <!-- the generated graphic -->
         <h1 id="instruction" style="height:0.01px; overflow:hidden"><span style="color:#24478d; font-weight:bold">Download,</span> then share!</h1>
@@ -102,14 +103,9 @@
         <!-- a box for holding the graphic and buttons -->
         <div id="avatar-desc" class="flex column center-vl center-hl">
           <!-- form that calls fetchImage() -->
-          <form id="avatar-form" onsubmit="fetchImage(); return false" enctype="multipart/form-data">
-            <input type="hidden" name="frame" value="b6a7d84f84cba96d4e18469eb4aec9e8c43429b36d175312a5cf1bde3c532c8b" />
-            <input type="hidden" name="getURL">
-            <input id="inputfile" class="form-control-file" type="file" name="photo" accept="image/*" onchange="findFile(this);">
-
+          <form id="avatar-form" onsubmit="makeImage(); return false" enctype="multipart/form-data">
+            <input id="inputfile" type="file" name="photo" accept="image/*" onchange="findFile(this);">
             <label for="inputfile" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg><span id="choose"> Choose an image</span></label>
-
-            <span id="big-choose">Choose an image</span>
             <input id='submit' type="submit" value="Upload" target="_blank" onclick="show('display-box')">
             <img id="avatar" src="images/AvatarTemplate.png" alt="">
           </form>
