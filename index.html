@@ -21,16 +21,16 @@
     <div class="container">
 
       <!-- a box for displaying the generated graphic -->
-      <div class="column center-hl center-vl" id="display-box" style="opacity:0; z-index:-1">
+      <div class="flex column center-hl center-vl" id="display-box" style="opacity:0; z-index:-1">
         <!-- button to close display box -->
-        <svg class="close" onclick="showHide('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <svg class="close" onclick="putBack('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
-        <canvas id="canvas" width="1200px" height="675px" style="display:none"></canvas> 
+        <canvas id="canvas" width="1200px" height="675px" style="display:none"></canvas>
         <img id="loading" src="images/Loadingsome.gif" alt="" width="50%">
         <!-- the generated graphic -->
         <h1 id="instruction" style="height:0.01px; overflow:hidden"><span style="color:#24478d; font-weight:bold">Download,</span> then share!</h1>
-        <img id="avatar-generated" style="width:50%" onload="hide('loading'); expand('buttons'); expand('instruction')">
+        <img id="avatar-generated" style="width:50%" onload="hide('loading'); expand('buttons'); expand('instruction')" onchange="show('avatar-generated')">
         <!-- a box to center the display box elements -->
         <div id="buttons" class="flex center-hl center-vl" style="height:0.01px; overflow:hidden">
           <ul>
@@ -57,7 +57,7 @@
       <!-- a box for displaying the help message -->
       <div class="center-hl center-vl" id="help-box" style="display:none">
         <!-- a button to close the help message -->
-        <svg class="close" onclick="showHide('help-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <svg class="close" onclick="flexNone('help-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
         <!-- the help message -->
@@ -93,7 +93,7 @@
       <div id="avatar-box" class="flex center-hl center-vl">
         <!-- button to open help message -->
         <div id="help">
-          <svg onclick="showHide('help-box')" fill="white" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <svg onclick="flexNone('help-box')" fill="white" width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-info-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
             <circle cx="8" cy="4.5" r="1"/>
@@ -103,10 +103,10 @@
         <!-- a box for holding the graphic and buttons -->
         <div id="avatar-desc" class="flex column center-vl center-hl">
           <!-- form that calls fetchImage() -->
-          <form id="avatar-form" onsubmit="makeImage(); return false" enctype="multipart/form-data">
+          <form id="avatar-form" onsubmit="return false" enctype="multipart/form-data">
             <input id="inputfile" type="file" name="photo" accept="image/*" onchange="findFile(this);">
             <label for="inputfile" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg><span id="choose"> Choose an image</span></label>
-            <input id='submit' type="submit" value="Upload" target="_blank" onclick="show('display-box')">
+            <input id='submit' type="submit" value="Upload" target="_blank" onclick="putForward('display-box'); show('loading'); makeImage()">
             <img id="avatar" src="images/AvatarTemplate.png" alt="">
           </form>
         </div>
