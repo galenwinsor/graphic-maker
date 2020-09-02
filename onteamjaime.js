@@ -65,3 +65,25 @@ function fetchImage(e) {
 
   return false;
 }
+
+function makeImage() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        var frame = new Image();
+        var image = new Image();
+        frame.src = 'JaimeCapeFinal.png';
+        frame.onload = function() {
+            ctx.drawImage(frame, 0, 0, 1200, 675);
+            upload = document.getElementById('file').files.item(0);
+            upload.crossOrigin = 'anonymous';
+            image.src = URL.createObjectURL(upload);
+            image.onload = function() {
+              ctx.globalCompositeOperation = 'destination-over';
+              if (image.height < image.width) {
+                ctx.drawImage(image, 418, 30, 597 * image.width / image.height, 597)
+              }
+              ctx.drawImage(image, 418, 30, 749, 749 * image.height / image.width)
+              canvas.toBlob( b => {document.getElementById('display').src = URL.createObjectURL(b)})
+            }
+        }
+      }
