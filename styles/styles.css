@@ -292,6 +292,12 @@ label:hover {
   font-size:2em;
 }
 
+#tweet{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 #fb{
   display:flex;
   flex-direction: column;
