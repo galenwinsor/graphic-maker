@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
+    <meta name="og:title" content="Join the Adventure! Become a #TeamJaime Hero.">
+    <meta name="og:image" content="https://hero.jaimeharrison.com/images/JaimeCapeFinal.png">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <title>Join the Adventure!</title> <!--JWCR:  How about a better name? -->
 
-    <script src="onteamjaime.min.js"></script>
+    <script src="onteamjaime.js"></script>
   </head>
   <body>
 
@@ -30,7 +32,29 @@
         <canvas id="canvas" width="1200px" height="675px" style="display:none"></canvas>
         <img id="loading" src="images/Loadingsome.gif" alt="" width="50%">
         <!-- the generated graphic -->
-        <h1 id="instruction" style="height:0.01px; overflow:hidden"><a id="download-1" href="#" download="TeamJaimeAvatar.png" style="color:#24478d"><span style="color:#24478d; font-weight:bold">Download,</span></a> then share!</h1>
+        <h1 id="instruction" style="height:0.01px; overflow:hidden">Adjust, <a id="download-1" href="#" download="TeamJaimeAvatar.png" style="color:#24478d"><span style="color:#24478d; font-weight:bold">download,</span></a> then share!</h1>
+        <ul id="adjust-buttons">
+          <li>
+            <svg onclick="displayImage(-5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+            </svg>
+          </li>
+          <li>
+            <svg onclick="displayImage(5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+            </svg>
+          </li>
+          <li>
+            <svg onclick="displayImage(0, -5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+            </svg>
+          </li>
+          <li>
+            <svg onclick="displayImage(0, 5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+            </svg>
+          </li>
+        </ul>
         <img id="avatar-generated" style="width:50%" onload="hide('loading'); expand('buttons'); expand('instruction')" onchange="show('avatar-generated')">
         <!-- a box to center the display box elements -->
         <div id="buttons" class="flex center-hl center-vl" style="height:0.01px; overflow:hidden">
@@ -49,7 +73,7 @@
               <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I&#39;m on Team Jaime! Make your own #TeamJaime comic book panel, and join the fight today." data-hashtags="TeamJaime" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </li>
             <li>
-              <div id="fb" class="fb-share-button" data-href="https://hero.jaimeharrison.com" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+              <a href="https://facebook.com/sharer/sharer.php?u=https://hero.jaimeharrison.com" style="font-size:0.75em">Share on Facebook</a>
             </li>
           </ul>
         </div>
@@ -107,7 +131,7 @@
           <form id="avatar-form" onsubmit="return false" enctype="multipart/form-data">
             <input id="inputfile" type="file" name="photo" accept="image/*" onchange="findFile(this);">
             <label for="inputfile" id="file-label"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg><span id="choose"> Choose an image</span></label>
-            <input id='submit' type="submit" value="Upload" target="_blank" onclick="putForward('display-box'); show('loading'); makeImage()">
+            <input id='submit' type="submit" value="Upload" target="_blank" onclick="putForward('display-box'); show('loading'); displayImage(0,0,1)">
             <img id="avatar" src="images/AvatarTemplate.png" alt="">
           </form>
         </div>

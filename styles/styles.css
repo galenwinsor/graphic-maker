@@ -266,6 +266,12 @@ label:hover {
 
 /* -------- display box ----------- */
 
+@media (max-height:964px) {
+  #display-box{
+    height:964px;
+  }
+}
+
 #display-box{
   position:fixed;
   z-index:2;
@@ -323,8 +329,20 @@ label:hover {
   filter:drop-shadow(15px 15px 15px black);
 }
 
-#download:hover{
+#download-1:hover #download-2:hover{
   color:#e72f5e;
+}
+
+#adjust-buttons{
+  margin:0;
+}
+
+#adjust-buttons li{
+  margin:0 0.5em;
+}
+
+#adjust-buttons li:hover{
+  cursor:pointer;
 }
 
 /* @media (max-width:850px) {
