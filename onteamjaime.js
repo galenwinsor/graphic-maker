@@ -102,7 +102,7 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
         ctx.clearRect(0, 0, cwidth, cheight);
         URL.revokeObjectURL(avatar_generated.src);
         draw_frame();
-        let img = document.createElement('img');
+        let img = new Image();
         img.onload = function() {
           img.src = URL.createObjectURL(upload.files.item(0));
           draw_upload(img, x_nudge, y_nudge, scale);
