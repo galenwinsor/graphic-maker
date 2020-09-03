@@ -105,7 +105,7 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
         let img = document.createElement('img');
         img.onload = function() {
           img.src = URL.createObjectURL(upload.files[0]);
-          draw_upload(img, x_nudge, y_nudge, scale));
+          draw_upload(img, x_nudge, y_nudge, scale);
         }
         hide('loading');
         expand('buttons');
