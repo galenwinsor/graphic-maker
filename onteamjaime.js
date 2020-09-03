@@ -103,8 +103,8 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
         URL.revokeObjectURL(avatar_generated.src);
         draw_frame();
         let img = new Image();
+        img.src = URL.createObjectURL(upload.files.item(0));
         img.onload = function() {
-          img.src = URL.createObjectURL(upload.files.item(0));
           draw_upload(img, x_nudge, y_nudge, scale);
         }
         hide('loading');
