@@ -58,6 +58,7 @@ window.onload = (e => {
       avatar_generated.onload = (e) => {URL.revokeObjectURL(this.src)};
       upload = document.getElementById('inputfile');
       frame = new Image;
+      frame.onload = draw_frame;
       frame.src = 'images/JaimeCapeFinal.png';
     });
 
@@ -71,7 +72,7 @@ function draw_frame() {
 function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
       ileft += y_nudge;
       itop += x_nudge;
-//       ctx.globalCompositeOperation = 'destination-over';
+      ctx.globalCompositeOperation = 'destination-over';
       if (img.height < img.width) {
         ctx.drawImage(img, ileft, itop, 597 * img.width / img.height, 597);
       } else {
@@ -100,12 +101,12 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
 function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
         ctx.clearRect(0, 0, cwidth, cheight);
         URL.revokeObjectURL(avatar_generated.src);
+        draw_frame();
         let img = new Image();
         img.src = URL.createObjectURL(upload.files.item(0));
         img.onload = function() {
           draw_upload(img, x_nudge, y_nudge, scale);
         }
-        draw_frame();
         hide('loading');
         expand('buttons');
         expand('instruction');
