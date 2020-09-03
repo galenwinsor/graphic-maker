@@ -86,6 +86,18 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
         })
       }
 
+if (!('createImageBitmap' in window)) {
+    window.createImageBitmap = async function(blob) {
+        return new Promise((resolve,reject) => {
+            let img = document.createElement('img');
+            img.addEventListener('load', function() {
+                resolve(this);
+            });
+            img.src = URL.createObjectURL(blob);
+        });
+    }
+}
+
 function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
         ctx.clearRect(0, 0, cwidth, cheight);
         URL.revokeObjectURL(avatar_generated.src);
