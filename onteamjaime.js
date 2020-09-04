@@ -70,21 +70,15 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
   var image = new Image();
   frame.src = 'images/JaimeCapeFinal.png';
   frame.onload = function() {
-    ctx.drawImage(frame, 0, 0, 1200, 675);
+    ctx.drawImage(frame, 0, 0, 1200, 675, 0, 0, frame.width, frame.height);
     upload_file = upload.files.item(0);
     image.src = URL.createObjectURL(upload_file);
     image.onload = function() {
       ctx.globalCompositeOperation = 'destination-over';
       if (image.height < image.width) {
-        if (ileft > 413) {
-          return
-        }
-        ctx.drawImage(image, ileft, 34, 605.8 * image.width / image.height, 605.8)
+        ctx.drawImage(image, ileft, itop, image.width, image.height, ileft, itop, 605.8 * image.width / image.height, 605.8)
       } else {
-        if (itop > 34) {
-          return
-        }
-        ctx.drawImage(image, 413, 34, 750.4, 750.4 * image.height / image.width);
+        ctx.drawImage(image, ileft, itop, image.width, image.height, ileft, itop, 750.4, 750.4 * image.height / image.width)
       }
       canvas.toBlob(b =>
         {
@@ -92,6 +86,9 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
           document.getElementById('avatar-generated').src = url;
           document.getElementById('download-1').href = url;
           document.getElementById('download-2').href = url;
+          hide('loading');
+          expand('buttons');
+          expand('instruction');
         }
       )
     }
