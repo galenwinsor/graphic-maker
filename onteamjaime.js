@@ -57,60 +57,98 @@ window.onload = (e => {
       avatar_generated = document.getElementById('avatar-generated');
       avatar_generated.onload = (e) => {URL.revokeObjectURL(this.src)};
       upload = document.getElementById('inputfile');
-      frame = new Image;
-      frame.onload = draw_frame;
+      frame = new Image();
       frame.src = 'images/JaimeCapeFinal.png';
     });
 
-function draw_frame() {
-      frame.src = 'images/JaimeCapeFinal.png'
-      frame.onload = function() {
-        ctx.drawImage(frame, 0, 0, cwidth, cheight);
-      }
-    }
+function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
+  ileft += y_nudge;
+  itop += x_nudge;
 
-function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
-      ileft += y_nudge;
-      itop += x_nudge;
+  ctx.clearRect(0, 0, cwidth, cheight);
+  URL.revokeObjectURL(avatar_generated.src);
+  var image = new Image();
+  frame.src = 'images/JaimeCapeFinal.png';
+  frame.onload = function() {
+    ctx.drawImage(frame, 0, 0, 1200, 675);
+    upload_file = upload.files.item(0);
+    image.src = URL.createObjectURL(upload_file);
+    image.onload = function() {
       ctx.globalCompositeOperation = 'destination-over';
-      if (img.height < img.width) {
-        ctx.drawImage(img, ileft, itop, 597 * img.width / img.height, 597);
+      if (image.height < image.width) {
+        if (ileft > 413) {
+          return
+        }
+        ctx.drawImage(image, ileft, 34, 605.8 * image.width / image.height, 605.8)
       } else {
-        ctx.drawImage(img, ileft, itop, 749, 749 * img.height / img.width);
+        if (itop > 34) {
+          return
+        }
+        ctx.drawImage(image, 413, 34, 750.4, 750.4 * image.height / image.width);
       }
-      canvas.toBlob(b => {
-          const url = URL.createObjectURL(b);
-          avatar_generated.src = url;
+      canvas.toBlob(b =>
+        {
+          var url = URL.createObjectURL(b);
+          document.getElementById('avatar-generated').src = url;
           document.getElementById('download-1').href = url;
           document.getElementById('download-2').href = url;
-        })
-      }
-
-// if (!('createImageBitmap' in window)) {
-//     window.createImageBitmap = async function(blob) {
-//         return new Promise((resolve,reject) => {
-//             let img = document.createElement('img');
-//             img.addEventListener('load', function() {
-//                 resolve(this);
-//             });
-//             img.src = URL.createObjectURL(blob);
-//         });
-//     }
-// }
-
-function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
-        ctx.clearRect(0, 0, cwidth, cheight);
-        URL.revokeObjectURL(avatar_generated.src);
-        draw_frame();
-        let img = new Image();
-        img.src = URL.createObjectURL(upload.files.item(0));
-        img.onload = function() {
-          draw_upload(img, x_nudge, y_nudge, scale);
         }
-        hide('loading');
-        expand('buttons');
-        expand('instruction');
-      }
+      )
+    }
+  }
+}
+
+// function draw_frame() {
+//       frame.src = 'images/JaimeCapeFinal.png'
+//       frame.onload = function() {
+//         ctx.drawImage(frame, 0, 0, cwidth, cheight);
+//       }
+//     }
+//
+// function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
+//       ileft += y_nudge;
+//       itop += x_nudge;
+//       ctx.globalCompositeOperation = 'destination-over';
+//       if (img.height < img.width) {
+//         ctx.drawImage(img, ileft, itop, 597 * img.width / img.height, 597);
+//       } else {
+//         ctx.drawImage(img, ileft, itop, 749, 749 * img.height / img.width);
+//       }
+//       canvas.toBlob(b => {
+//           const url = URL.createObjectURL(b);
+//           avatar_generated.src = url;
+//           document.getElementById('download-1').href = url;
+//           document.getElementById('download-2').href = url;
+//         })
+//       }
+//
+// function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
+//         ctx.clearRect(0, 0, cwidth, cheight);
+//         URL.revokeObjectURL(avatar_generated.src);
+//         draw_frame();
+//         let img = new Image();
+//         img.src = URL.createObjectURL(upload.files.item(0));
+//         img.onload = function() {
+//           draw_upload(img, x_nudge, y_nudge, scale);
+//         }
+//         hide('loading');
+//         expand('buttons');
+//         expand('instruction');
+//       }
+
+
+
+      // if (!('createImageBitmap' in window)) {
+      //     window.createImageBitmap = async function(blob) {
+      //         return new Promise((resolve,reject) => {
+      //             let img = document.createElement('img');
+      //             img.addEventListener('load', function() {
+      //                 resolve(this);
+      //             });
+      //             img.src = URL.createObjectURL(blob);
+      //         });
+      //     }
+      // }
 
 // function makeImage() {
 //         const canvas = document.getElementById('canvas');
