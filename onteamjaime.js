@@ -77,7 +77,13 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
     ctx.drawImage(img, ileft, itop, 749, 749 * img.height / img.width);
   }
   canvas.toBlob(b => {
-      disp_img.src = URL.createObjectURL(b);
+      const url = URL.createObjectURL(b);
+      disp_img.src = url;
+      document.getElementById('download-1').href = url;
+      document.getElementById('download-2').href = url;
+      hide('loading');
+      expand('buttons');
+      expand('instruction');
     })
 }
 
@@ -89,6 +95,7 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
     draw_upload(upload_img, x_nudge, y_nudge, scale);
   }
   upload_img.src = new Image().src = URL.createObjectURL(upload_input.files[0]);
+  
 }
 
 // const cwidth = 1200;
