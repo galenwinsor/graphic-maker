@@ -60,7 +60,7 @@ window.onload = (e => {
   upload_input = document.getElementById('inputfile');
   frame = new Image;
   frame.onload = draw_frame;
-  frame.src = 'JaimeCapeFinal.png';
+  frame.src = 'images/JaimeCapeFinal.png';
 });
 
 function draw_frame() {
@@ -95,7 +95,7 @@ function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
     draw_upload(upload_img, x_nudge, y_nudge, scale);
   }
   upload_img.src = new Image().src = URL.createObjectURL(upload_input.files[0]);
-  
+
 }
 
 // const cwidth = 1200;
