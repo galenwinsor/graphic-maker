@@ -87,6 +87,7 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
       return
     } else if (ileft < 413) {
       ileft = ileft + 5;
+      return;
     } else {
       ctx.drawImage(img, ileft, itop, 752, 752 * img.height / img.width);
     }
