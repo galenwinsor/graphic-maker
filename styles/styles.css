@@ -334,7 +334,8 @@ label:hover {
 }
 
 #adjust-buttons{
-  margin:0;
+  margin:0 !iimportant;
+  padding: 0;
 }
 
 #adjust-buttons li{
@@ -343,6 +344,10 @@ label:hover {
 
 #adjust-buttons li:hover{
   cursor:pointer;
+}
+
+#instruction{
+  margin:0;
 }
 
 /* @media (max-width:850px) {
