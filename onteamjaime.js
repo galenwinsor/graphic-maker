@@ -55,7 +55,7 @@ window.onload = (e => {
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
   disp_img = document.getElementById('avatar-generated');
-  disp_img.onload = (e) => {URL.revokeObjectURL(this.src)};
+  disp_img.onload = (e) => {window.URL.revokeObjectURL(this.src)};
   upload_img = new Image();
   upload_input = document.getElementById('inputfile');
   frame = new Image;
@@ -72,18 +72,30 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
   itop += x_nudge;
   ctx.globalCompositeOperation = 'destination-over';
   if (img.height < img.width) {
-    if (itop > 34 || itop < 34) {
+    if (itop > 34) {
+      itop = itop - 5;
       return
+    } else if (itop < 34){
+      itop = itop + 5;
+      return
+    } else {
+      ctx.drawImage(img, ileft, itop, 602 * img.width / img.height, 602);
     }
-    ctx.drawImage(img, ileft, itop, 602 * img.width / img.height, 602);
   } else {
-    if (ileft > 413 || ileft < 413) {
+    if (ileft > 413) {
+      ileft = ileft - 5;
       return
+    } else if (ileft < 413) {
+      ileft = ileft + 5;
+    } else {
+      ctx.drawImage(img, ileft, itop, 752, 752 * img.height / img.width);
     }
-    ctx.drawImage(img, ileft, itop, 752, 752 * img.height / img.width);
   }
   canvas.toBlob(b => {
       const url = URL.createObjectURL(b);
+      disp_img.onload = (e) => {
+        window.URL.revokeObjectURL(this.src);
+      }
       disp_img.src = url;
       document.getElementById('download-1').href = url;
       document.getElementById('download-2').href = url;
@@ -93,13 +105,16 @@ function draw_upload(img, x_nudge = 0, y_nudge = 0, scale = 1) {
     })
 }
 
-function displayImage(x_nudge = 0, y_nudge = 0, scale = 1) {
+function displayImage(x_nudge = 0, y_nudge = 0, scale = 1, reset = false) {
+  if (reset) {
+    ileft = 413;
+    itop = 34;
+  }
   ctx.clearRect(0, 0, cwidth, cheight);
   draw_frame();
   upload_img.onload = (e) => {
-    URL.revokeObjectURL(this.src);
+    window.URL.revokeObjectURL(this.src);
     draw_upload(upload_img, x_nudge, y_nudge, scale);
   }
   upload_img.src = new Image().src = URL.createObjectURL(upload_input.files[0]);
-
 }
