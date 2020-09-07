@@ -24,58 +24,77 @@
     <div class="container">
 
       <!-- a box for displaying the generated graphic -->
-      <div class="flex column center-hl center-vl" id="display-box" style="opacity:0; z-index:-1">
+      <div class="flex column center-hl center-vl" id="display-box" style="opacity:0; z-index:-1; position:absolute; height:100%; width:100%;">
         <!-- button to close display box -->
         <svg class="close" onclick="putBack('display-box')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
+        <div id="download-help" class="center-hl center-vl" style="position:fixed; top:0; left:0; display:none; width:100vw; height:100vh; z-index:4">
+          <div class="flex column center-hl" style="position:absolute; width:68%; color:black; background-color:white; opacity:0.95; font-size:1em; padding:1em;">
+            <svg class="close" style="top: 1em; right:1em; fill:black" onclick="flexNone('download-help')" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+            <p>
+              <strong>Download instructions:</strong>
+            </p>
+            <br>
+            <p><strong>For computer:</strong> look for your saved Jaime graphic in your Downloads folder.</p>
+            <br>
+            <p><strong>For mobile:</strong> if the browser didn't open a new page, look in the top right of your screen for the browser's downloads. (For example, the <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+</svg> icon). Save your image to your phone from there.</p>
+          </div>
+        </div>
         <canvas id="canvas" width="1200px" height="675px" style="display:none"></canvas>
         <img id="loading" src="images/Loadingsome.gif" alt="" width="50%">
         <!-- the generated graphic -->
-        <h1 id="instruction" style="height:0.01px; overflow:hidden">Adjust, <a id="download-1" href="#" download="TeamJaimeAvatar.png" style="color:#24478d"><span style="color:#24478d; font-weight:bold">download,</span></a> then share!</h1>
-        <ul id="adjust-buttons">
-          <li>
-            <svg onclick="displayImage(-5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-            </svg>
-          </li>
-          <li>
-            <svg onclick="displayImage(5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-            </svg>
-          </li>
-          <li>
-            <svg onclick="displayImage(0, -5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
-            </svg>
-          </li>
-          <li>
-            <svg onclick="displayImage(0, 5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
-            </svg>
-          </li>
-        </ul>
-        <img id="avatar-generated" style="width:50%" onload="hide('loading'); expand('buttons'); expand('instruction')" onchange="show('avatar-generated')">
-        <!-- a box to center the display box elements -->
-        <div id="buttons" class="flex center-hl center-vl" style="height:0.01px; overflow:hidden">
-          <ul>
+        <div class="flex column center-hl center-vl" style="margin-top:-14em">
+          <h1 id="instruction" style="height:0.01px; overflow:hidden">Adjust, <a id="download-1" href="#" download="TeamJaimeAvatar.png" style="color:#24478d" onclick="flexNone('download-help')"><span style="color:#24478d; font-weight:bold">download,</span></a> then share!</h1>
+          <ul id="adjust-buttons">
             <li>
-              <!-- a download button -->
-              <a id="download-2" href="#" download="TeamJaimeAvatar.png">
-                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                  <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                </svg>
-              </a>
-            </li>
-            <!-- TODO: figure out how to make these buttons share graphic directly -->
-            <li id="tweet">
-              <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I&#39;m on Team Jaime! Make your own #TeamJaime comic book panel, and join the fight today." data-hashtags="TeamJaime" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <svg onclick="displayImage(-5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+              </svg>
             </li>
             <li>
-              <a href="https://facebook.com/sharer/sharer.php?u=https://hero.jaimeharrison.com" style="font-size:0.75em" target="_blank">Share on Facebook</a>
+              <svg onclick="displayImage(5, 0, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+              </svg>
+            </li>
+            <li>
+              <svg onclick="displayImage(0, -5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
+              </svg>
+            </li>
+            <li>
+              <svg onclick="displayImage(0, 5, 1)" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+              </svg>
             </li>
           </ul>
+          <img id="avatar-generated" style="width:50%" onload="hide('loading'); expand('buttons'); expand('instruction')" onchange="show('avatar-generated')">
+          <!-- a box to center the display box elements -->
+          <div id="buttons" class="flex center-hl center-vl" style="height:0.01px; overflow:hidden">
+            <ul>
+              <li>
+                <!-- a download button -->
+                <a id="download-2" href="#" download="TeamJaimeAvatar.png" onclick="flexNone('download-help')">
+                  <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-download" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                  </svg>
+                </a>
+              </li>
+              <!-- TODO: figure out how to make these buttons share graphic directly -->
+              <li id="tweet">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I&#39;m on Team Jaime! Make your own #TeamJaime comic book panel, and join the fight today." data-hashtags="TeamJaime" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </li>
+              <li>
+                <a href="https://facebook.com/sharer/sharer.php?u=https://hero.jaimeharrison.com" style="font-size:0.75em" target="_blank">Share on Facebook</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 

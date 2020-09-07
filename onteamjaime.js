@@ -38,6 +38,7 @@ function putBack(e) {
 
 function expand(e) {
   document.getElementById(e).style.height = "auto";
+  document.getElementById(e).style.overflow = "visible";
 }
 
 const cwidth = 1200;
